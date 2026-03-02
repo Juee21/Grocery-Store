@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-s9w=!h%6$56xkmt&ybsg03y)!s+&@om6+xxxj3%@9$m-mj4i)!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['Juee.pythonanywhere.com']
+ALLOWED_HOSTS = ['Juee.pythonanywhere.com','localhost']
 
 
 # Application definition
@@ -118,6 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -127,8 +128,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import os 
 
 MEDIA_URL = 'media/'
-# Static and Media files
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
+
+CSRF_TRUSTED_ORIGINS = ['https://Juee.pythonanywhere.com']
