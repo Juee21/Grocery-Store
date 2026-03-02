@@ -1,0 +1,33 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Order Successful - Freshly{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 col-lg-6 text-center">
+        <div class="card border-0 shadow-sm p-5">
+            <div class="mb-4">
+                <span style="font-size: 5rem;">🎉</span>
+            </div>
+            <h1 class="fw-bold text-success mb-3">Order Successful!</h1>
+            <p class="lead text-muted mb-4">
+                Thank you for shopping with Freshly. Your order <strong>#{{ order.id }}</strong> has been placed successfully.
+            </p>
+            
+            <div class="bg-light p-3 rounded-3 mb-4 text-start">
+                <p class="mb-1 small"><strong>Status:</strong> Processing</p>
+                <p class="mb-0 small"><strong>Notification:</strong> A receipt has been sent to {{ order.email }}</p>
+            </div>
+
+            <div class="d-grid gap-2">
+                <a href="{% url 'orders:admin_order_pdf' order.id %}" class="btn btn-outline-danger py-2">
+                    📄 Download Receipt (PDF)
+                </a>
+                <a href="{% url 'shop:product_list' %}" class="btn btn-success py-2">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

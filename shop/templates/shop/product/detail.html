@@ -1,0 +1,48 @@
+{% extends "shop/base.html" %}
+
+{% block title %}{{ product.name }} - Freshly{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row bg-white rounded-4 overflow-hidden shadow-sm p-4 align-items-center">
+        <div class="col-md-5 text-center mb-4 mb-md-0">
+            <img src="{{ product.image.url }}" class="img-fluid rounded" style="max-height: 450px;">
+        </div>
+        <div class="col-md-7 ps-md-5">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="{% url 'shop:product_list' %}" class="text-success text-decoration-none">Shop</a></li>
+                    <li class="breadcrumb-item active">{{ product.category }}</li>
+                </ol>
+            </nav>
+            <h1 class="fw-bold display-5 mb-2">{{ product.name }}</h1>
+            <p class="text-muted fs-5 mb-4">{{ product.description }}</p>
+            
+            <div class="d-flex align-items-center mb-4">
+                <span class="display-6 fw-bold text-success me-3">${{ product.price }}</span>
+                <span class="badge bg-light text-success border border-success px-3 py-2">In Stock</span>
+            </div>
+
+            <div class="card bg-light border-0 p-4">
+                <form action="{% url 'shop:cart_add' product.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label class="fw-bold">Qty:</label>
+                        </div>
+                        <div class="col-3">
+                            {{ cart_product_form.quantity }}
+                        </div>
+                        {{ cart_product_form.override }}
+                        <div class="col">
+                            <button type="submit" class="btn btn-success w-100 d-flex justify-content-center align-items-center">
+                                <span class="me-2">➕</span> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
